@@ -1,0 +1,5 @@
+name: BasePlugin
+version: '1.0'
+authors: ["NiixoZ"]
+main: fr.niixoz.plugin.BasePlugin
+api-version: '1.21'
