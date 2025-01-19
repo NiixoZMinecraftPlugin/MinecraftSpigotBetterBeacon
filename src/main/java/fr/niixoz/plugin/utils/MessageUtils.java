@@ -11,7 +11,7 @@ public class MessageUtils {
 
         TextComponent comp = new TextComponent();
         comp.addExtra(new ComponentBuilder("[").color(ChatColor.of("#5D1AA1")).create()[0]);
-        comp.addExtra(new ComponentBuilder("Plugin").color(ChatColor.of("#A320E6")).create()[0]);
+        comp.addExtra(new ComponentBuilder("BetterBeacon").color(ChatColor.of("#A320E6")).create()[0]);
         comp.addExtra(new ComponentBuilder("]").color(ChatColor.of("#5D1AA1")).create()[0]);
         comp.addExtra(new ComponentBuilder(" " + message).color(ChatColor.of("#B5B5B5")).create()[0]);
 

@@ -4,7 +4,7 @@ import fr.niixoz.plugin.MainPlugin;
 
 public class Config {
 
-    public static String errorPrefix = "§4[§cPluginName§4] §c";
+    public static String errorPrefix = "§4[§cBetterBeacon§4] §c";
     public static String errorMessage = "Une erreur est survenue, merci de contacter un administrateur.";
 
 

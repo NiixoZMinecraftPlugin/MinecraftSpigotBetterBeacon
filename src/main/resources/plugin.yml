@@ -1,5 +1,5 @@
-name: BasePlugin
+name: BetterBeacons
 version: '1.0'
 authors: ["NiixoZ"]
-main: fr.niixoz.plugin.BasePlugin
+main: fr.niixoz.plugin.MainPlugin
 api-version: '1.21'

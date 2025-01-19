@@ -7,6 +7,6 @@ public class CommandsManager {
 
     public static void registerCommands() {
         MainPlugin plugin = MainPlugin.getInstance();
-        plugin.getCommand("test").setExecutor(new TestCommand());
+        //plugin.getCommand("test").setExecutor(new TestCommand());
     }
 }
