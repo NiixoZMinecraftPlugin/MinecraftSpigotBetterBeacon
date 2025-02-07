@@ -24,13 +24,36 @@ public class Beacons {
             plugin.saveResource("beacons.yml", false);
         }
         config = YamlConfiguration.loadConfiguration(configFile);
+        loadBeacons();
     }
 
     public static void loadBeacons() {
         beacons.clear();
+        if (config.isConfigurationSection("beacons")) {
+            for (String key : config.getConfigurationSection("beacons").getKeys(false)) {
+                Location loc = config.getLocation("beacons." + key + ".location");
+                String playerUUID = config.getString("beacons." + key + ".playerUUID");
+                String datePlaced = config.getString("beacons." + key + ".datePlaced");
+                int level = config.getInt("beacons." + key + ".level");
+                if (loc != null && playerUUID != null && datePlaced != null) {
+                    beacons.add(new BeaconData(loc, playerUUID, datePlaced, level));
+                }
+            }
+        }
     }
 
-    private static void saveConfigFile() {
+    public static void saveBeaconsFile() {
+        // Efface l'ancienne section "beacons"
+        config.set("beacons", null);
+        int index = 0;
+        for (BeaconData beaconData : beacons) {
+            String path = "beacons.beacon" + index;
+            config.set(path + ".location", beaconData.getLocation());
+            config.set(path + ".playerUUID", beaconData.getPlayerUUID());
+            config.set(path + ".datePlaced", beaconData.getDatePlaced());
+            config.set(path + ".level", beaconData.getLevel());
+            index++;
+        }
         try {
             config.save(configFile);
         } catch (IOException e) {
@@ -40,8 +63,7 @@ public class Beacons {
 
     public static void addBeacon(BeaconData beacon) {
         beacons.add(beacon);
-        //config
-        //saveConfigFile();
+        saveBeaconsFile();
     }
 
     public static BeaconData getBeaconByLocation(Location location) {
@@ -55,8 +77,7 @@ public class Beacons {
 
     public static void removeBeacon(BeaconData beacon) {
         beacons.remove(beacon);
-        //config
-        //saveConfigFile();
+        saveBeaconsFile();
     }
 
     public static void loopBeacons() {

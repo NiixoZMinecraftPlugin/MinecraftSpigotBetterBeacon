@@ -22,7 +22,7 @@ public class PlayerHandler implements Listener {
             Location location = e.getBlock().getLocation();
             String playerUUID = e.getPlayer().getUniqueId().toString();
             String datePlaced = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            Beacon beacon = (Beacon)e.getBlock();
+            Beacon beacon = (Beacon)e.getBlock().getState();
             int level = beacon.getTier();
 
             BeaconData beaconData = new BeaconData(location, playerUUID, datePlaced, level);
@@ -35,8 +35,10 @@ public class PlayerHandler implements Listener {
     public void onPlayerBreakBeacon(BlockBreakEvent e) {
         if(e.getBlock().getType() == Material.BEACON) {
             BeaconData beacon = Beacons.getBeaconByLocation(e.getBlock().getLocation());
-            Beacons.removeBeacon(beacon);
-            System.out.println("Remove beacon at location: " + e.getBlock().getLocation().toString());
+            if (beacon != null) {
+                Beacons.removeBeacon(beacon);
+                System.out.println("Remove beacon at location: " + e.getBlock().getLocation().toString());
+            }
         }
     }
 }
